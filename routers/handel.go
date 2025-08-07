@@ -12,20 +12,30 @@ type handlefuc func(w http.ResponseWriter, r *http.Request)
 
 var gridtmpl = template.Must(template.ParseFiles("./templates/grid.html"))
 
+
+type temlateData struct {
+	Get string
+	Trigger string
+	Grid theGameOfLife.State
+}
+
+var stoped bool = false
+var started bool
+var grid theGameOfLife.State
+
 func StartHandler(w http.ResponseWriter, r *http.Request)  {
 	fmt.Println("/start Request")
-	st := theGameOfLife.CreateState(30, 30)
-	st[18][15] = true
-	st[19][15] = true
-	st[19][14] = true
-	st[20][15] = true
-	st[20][16] = true
-	
+	st := theGameOfLife.StateExample()
 	refreshchan = theGameOfLife.PlayRoundsChan(st)
-	<-refreshchan
-	<-refreshchan
-	<-refreshchan
-	err := gridtmpl.Execute(w, <-refreshchan)
+	grid = <-refreshchan
+	tempdata := temlateData{
+		Get: "/refresh",
+		Trigger: "every 1s",
+		Grid: grid,
+	}
+	stoped = false
+	started = true
+	err := gridtmpl.Execute(w, tempdata)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -33,9 +43,41 @@ func StartHandler(w http.ResponseWriter, r *http.Request)  {
 
 var refreshchan chan theGameOfLife.State
 
-func RefreshHandeler(w http.ResponseWriter, r *http.Request)  {
+var isStarted bool
+
+
+func RefreshHandeler(w http.ResponseWriter, r *http.Request) {
+	if stoped {
+		w.WriteHeader(204)
+		return
+	}
 	fmt.Println("/refreash Request")
-	err := gridtmpl.Execute(w, <-refreshchan)
+	grid = <-refreshchan
+	tempdata := temlateData{
+		Get: "/refresh",
+		Trigger: "every 1s",
+		Grid: grid,
+	}
+	err := gridtmpl.Execute(w, tempdata)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func StepHandler(w http.ResponseWriter, r *http.Request) {
+	stoped = true
+	fmt.Println("/stop Request")
+	if !isStarted {
+		st := theGameOfLife.StateExample()
+		refreshchan = theGameOfLife.PlayRoundsChan(st)
+		isStarted = true
+	}
+	tempdata := temlateData{
+		Get: "/step",
+		Trigger: "onclick",
+		Grid: <-refreshchan,
+	}
+	err := gridtmpl.Execute(w , tempdata)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

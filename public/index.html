@@ -7,11 +7,11 @@
     <script src="https://unpkg.com/htmx.org"></script>
 </head>
 <body>
+    <button hx-get="/start" hx-trigger="click" hx-target="#grid" hx-swap="outerHTML" style="background-color: green;">Start</button>
+    <button hx-get="/step" hx-trigger="click" hx-target="#grid">Step</button>
     <div class="grid" id="grid" hx-swap="outerHTML">
         <!-- Cells will be dynamically loaded here -->
     </div>
-    <button hx-get="/refresh" hx-trigger="click" hx-target="#grid">Refresh Grid</button>
-    <button hx-get="/start" hx-trigger="click" hx-target="#grid" hx-swap="outerHTML" style="background-color: green;">Start</button>
 </body>
 </html>
 

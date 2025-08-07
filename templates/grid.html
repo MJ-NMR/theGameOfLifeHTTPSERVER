@@ -1,11 +1,11 @@
-<div class="grid" id="grid" hx-swap="outerHTML" hx-get="/refresh" hx-trigger="every 1ms">
-  {{range .}}
+<div class="grid" id="grid" hx-swap="outerHTML" hx-get="{{.Get}}" hx-trigger="{{.Trigger}}">
+  {{range .Grid}}
   <div class="row" style="display: inline-block; white-space: nowrap;">
     {{range .}}
       {{if .}}
-        <div class="cell on" style="color : red">#</div>
+        <div class="cell on" style="color : green">#</div>
       {{else}}
-        <div class="cell" style="color : green">*</div>
+        <div class="cell" style="color : red">*</div>
       {{end}}
     {{end}}
   </div>
