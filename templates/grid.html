@@ -1,0 +1,13 @@
+<div class="grid" id="grid" hx-swap="outerHTML" hx-get="/refresh" hx-trigger="every 1ms">
+  {{range .}}
+  <div class="row" style="display: inline-block; white-space: nowrap;">
+    {{range .}}
+      {{if .}}
+        <div class="cell on" style="color : red">#</div>
+      {{else}}
+        <div class="cell" style="color : green">*</div>
+      {{end}}
+    {{end}}
+  </div>
+  {{end}}
+</div>

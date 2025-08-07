@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game of Life Grid</title>
+    <script src="https://unpkg.com/htmx.org"></script>
+</head>
+<body>
+    <div class="grid" id="grid" hx-swap="outerHTML">
+        <!-- Cells will be dynamically loaded here -->
+    </div>
+    <button hx-get="/refresh" hx-trigger="click" hx-target="#grid">Refresh Grid</button>
+    <button hx-get="/start" hx-trigger="click" hx-target="#grid" hx-swap="outerHTML" style="background-color: green;">Start</button>
+</body>
+</html>
+
