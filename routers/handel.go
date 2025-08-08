@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"html/template"
 
-	"github.com/MJ-NMR/theGameOfLife"
+	"github.com/MJ-NMR/GOL"
 )
 
 type handlefuc func(w http.ResponseWriter, r *http.Request)
@@ -16,17 +16,17 @@ var gridtmpl = template.Must(template.ParseFiles("./templates/grid.html"))
 type temlateData struct {
 	Get string
 	Trigger string
-	Grid theGameOfLife.State
+	Grid GOL.State
 }
 
 var stoped bool = false
 var started bool
-var grid theGameOfLife.State
+var grid GOL.State
 
 func StartHandler(w http.ResponseWriter, r *http.Request)  {
 	fmt.Println("/start Request")
-	st := theGameOfLife.StateExample()
-	refreshchan = theGameOfLife.PlayRoundsChan(st)
+	st := GOL.StateExample()
+	refreshchan = GOL.PlayRoundsChan(st)
 	grid = <-refreshchan
 	tempdata := temlateData{
 		Get: "/refresh",
@@ -41,7 +41,7 @@ func StartHandler(w http.ResponseWriter, r *http.Request)  {
 	}
 }
 
-var refreshchan chan theGameOfLife.State
+var refreshchan chan GOL.State
 
 var isStarted bool
 
@@ -68,8 +68,8 @@ func StepHandler(w http.ResponseWriter, r *http.Request) {
 	stoped = true
 	fmt.Println("/stop Request")
 	if !isStarted {
-		st := theGameOfLife.StateExample()
-		refreshchan = theGameOfLife.PlayRoundsChan(st)
+		st := GOL.StateExample()
+		refreshchan = GOL.PlayRoundsChan(st)
 		isStarted = true
 	}
 	tempdata := temlateData{

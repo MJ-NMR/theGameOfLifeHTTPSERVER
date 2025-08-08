@@ -1,8 +1,2 @@
-github.com/MJ-NMR/theGameOfLife v0.0.0-20250807190010-259fa3349590 h1:bFKqstvQTxfuEig+B7EfFwZf83hwkvttB3JZlWV1n9g=
-github.com/MJ-NMR/theGameOfLife v0.0.0-20250807190010-259fa3349590/go.mod h1:CzHkdymP0n/uapg6xkODx6XhO+lVZ7UR7VIKy6vsTLc=
-github.com/MJ-NMR/theGameOfLife v0.0.0-20250807191651-e9e6d59ef0e5 h1:glJLdw9Hq9VcEowgCDseKksedhPeD8/h86EAJ4m+vTE=
-github.com/MJ-NMR/theGameOfLife v0.0.0-20250807191651-e9e6d59ef0e5/go.mod h1:CzHkdymP0n/uapg6xkODx6XhO+lVZ7UR7VIKy6vsTLc=
-github.com/MJ-NMR/theGameOfLife v0.0.0-20250807191959-e5c88639a9d9 h1:Dbkud/V2mL1/+lGWOENZYnii5XEbNWd0XS9t7aZrqn4=
-github.com/MJ-NMR/theGameOfLife v0.0.0-20250807191959-e5c88639a9d9/go.mod h1:CzHkdymP0n/uapg6xkODx6XhO+lVZ7UR7VIKy6vsTLc=
-github.com/MJ-NMR/theGameOfLife v0.0.0-20250807192212-1fe151cc5aa9 h1:mBCBKrrtfGMMaty4WhKuCaOW78rlQc1fsZHkaVX19qg=
-github.com/MJ-NMR/theGameOfLife v0.0.0-20250807192212-1fe151cc5aa9/go.mod h1:CzHkdymP0n/uapg6xkODx6XhO+lVZ7UR7VIKy6vsTLc=
+github.com/MJ-NMR/GOL v0.0.0-20250808143825-d038fd4453b3 h1:xCk0PEgNYe4RUF8u3FY5oXb7qp7kvvAuQHZAqU/j2L8=
+github.com/MJ-NMR/GOL v0.0.0-20250808143825-d038fd4453b3/go.mod h1:byfY1Sm1vDCu/2P7H39fIWSp0WHmMAybdvvWCcO/YM0=
